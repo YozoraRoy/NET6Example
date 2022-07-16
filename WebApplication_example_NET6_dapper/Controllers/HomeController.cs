@@ -11,28 +11,27 @@ namespace SqlApplication.Controllers
 
         public HomeController(IConfiguration configuration)
         {
-            // appsettings.jsonファイルから接続文字列を取得
+            // appsettings.json 建立連線字串
             _connectionString = configuration.GetConnectionString("TodoItemsConnection");
         }
 
         /// <summary>
-        /// ToDoアイテムを全件検索する
+        /// ToDo的物件全文檢索
         /// </summary>
         public async Task<IActionResult> Index()
         {
             using var connection = new SqlConnection(_connectionString);
 
-            // 実行するSQL
             var sql = "SELECT * FROM TodoItems";
 
-            // SELECT文を実行して取得したデータを型にマッピング
+            // 轉換成Model
             var Items = await connection.QueryAsync<TodoItemViewModel>(sql);
 
             return View(new TodoItemViewModel { Items = Items.ToList() });
         }
 
         /// <summary>
-        /// ToDoアイテムを登録する
+        /// ToDo新增
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -44,7 +43,7 @@ namespace SqlApplication.Controllers
 
                 var sql = "INSERT INTO TodoItems Values(@Name, 'false');";
 
-                // パラメータに設定する値
+                // 參數名稱設定
                 var param = new TodoItemViewModel { Name = todoItem.Name };
 
                 // INSERT文の実行
@@ -54,7 +53,7 @@ namespace SqlApplication.Controllers
         }
 
         /// <summary>
-        /// 「完了」がクリックされた場合にToDoアイテムを削除する
+        /// 完成後刪除物件
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Delete([Bind("Id")] TodoItemViewModel todoItem)
@@ -66,7 +65,7 @@ namespace SqlApplication.Controllers
                 var sql = "DELETE FROM TodoItems WHERE Id = @Id";
                 var param = new TodoItemViewModel { Id = todoItem.Id };
 
-                // Delete文の実行
+                // Delete
                 await connection.ExecuteAsync(sql, param);
             }
             return RedirectToAction(nameof(Index));

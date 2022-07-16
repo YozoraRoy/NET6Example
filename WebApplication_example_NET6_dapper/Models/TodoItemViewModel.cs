@@ -6,10 +6,10 @@ namespace SqlApplication.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "タスク")]
+        [Display(Name = "Task")]
         public string? Name { get; set; } = string.Empty;
 
-        [Display(Name = "完了チェック")]
+        [Display(Name = "完成確認")]
         public bool IsComplete { get; set; }
 
         public List<TodoItemViewModel>? Items { get; set; }

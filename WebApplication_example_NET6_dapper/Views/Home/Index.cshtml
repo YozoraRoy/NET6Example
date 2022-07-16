@@ -1,20 +1,21 @@
 ﻿@model SqlApplication.Models.TodoItemViewModel;
 
 @{
-    ViewData["Title"] = "ToDoリスト";
+    ViewData["Title"] = "ToDo列表";
 }
 
-<h1>ToDoリスト</h1>
+<h1>ToDo列表</h1>
 
-<p>
+
+<div>
     <form asp-action="Create" method="post">
         <div class="form-group">
             <input asp-for="Name" />
-            <input type="submit" value="タスクを登録" class="btn btn-primary" />
+            <input type="submit" value="新增TODO任務" class="btn btn-primary" />
         </div>
     </form>
-</p>
-
+</div>
+<br>
 <table class="table">
     <thead>
         <tr>
@@ -42,7 +43,7 @@
                 <td>
                     <form asp-action="Delete" asp-route-id="@item.Id">
                         <input type="hidden" asp-for="@item.Id" />
-                        <input type="submit" value="完了" class="btn btn-warning" />
+                        <input type="submit" value="完成" class="btn btn-warning" />
                     </form>
                 </td>
             </tr>
