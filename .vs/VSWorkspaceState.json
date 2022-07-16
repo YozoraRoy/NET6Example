@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebApplication_example_NET6_dapper",
+    "\\WebApplication_example_NET6_dapper\\Controllers",
+    "\\WebApplication_example_NET6_dapper\\Models",
+    "\\WebApplication_example_NET6_dapper\\Views",
+    "\\WebApplication_example_NET6_dapper\\Views\\Home"
+  ],
+  "SelectedNode": "\\WebApplication_example_NET6_dapper\\Models\\TodoItemViewModel.cs",
+  "PreviewInSolutionExplorer": false
+}
